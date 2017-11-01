@@ -2106,7 +2106,7 @@ returnValue QProblem::computeProjectedCholesky( )
 	la_int_t info = 0;
 	la_uint_t _nZ = (la_uint_t)nZ, _nV = (la_uint_t)nV;
 
-	POTRF( "U", &_nZ, R, &_nV, &info );
+	QPOASES_POTRF( "U", &_nZ, R, &_nV, &info );
 
 	/* <0 = invalid call, =0 ok, >0 not spd */
 	if (info > 0) {

@@ -34,8 +34,10 @@
 
 #include <qpOASES/Utils.hpp>
 
+namespace qp_oases {
+namespace blas {
 
-extern "C" void dpotrf_(	const char* uplo, const la_uint_t* _n, double* a,
+extern "C" void qp_oases_dpotrf_(	const char* uplo, const la_uint_t* _n, double* a,
 							const la_uint_t* _lda, la_int_t* info
 							)
 {
@@ -118,7 +120,7 @@ extern "C" void spotrf_(	const char* uplo, const la_uint_t* _n, float* a,
 		*info = 0;
 }
 
-extern "C" void dtrtrs_(	const char* UPLO, const char* TRANS, const char* DIAG,
+extern "C" void qp_oases_dtrtrs_(	const char* UPLO, const char* TRANS, const char* DIAG,
 							const la_uint_t* N, const la_uint_t* NRHS,
 							double* A, const la_uint_t* LDA, double* B, const la_uint_t* LDB, la_int_t* INFO
 							)
@@ -134,7 +136,7 @@ extern "C" void strtrs_(	const char* UPLO, const char* TRANS, const char* DIAG,
 	INFO[0] = ((la_int_t)0xDEADBEEF); /* Dummy. If SQProblemSchur is to be used, system LAPACK must be used */
 }
 
-extern "C" void dtrcon_(	const char* NORM, const char* UPLO, const char* DIAG,
+extern "C" void qp_oases_dtrcon_(	const char* NORM, const char* UPLO, const char* DIAG,
 							const la_uint_t* N, double* A, const la_uint_t*LDA,
 							double* RCOND, double* WORK, const la_uint_t* IWORK, la_int_t* INFO
 							)
@@ -149,4 +151,7 @@ extern "C" void strcon_(	const char* NORM, const char* UPLO, const char* DIAG,
 {
 	INFO[0] = ((la_int_t)0xDEADBEEF); /* Dummy. If SQProblemSchur is to be used, system LAPACK must be used */
 }
+
+} // namespace qp_oases
+} // namespace blas
 

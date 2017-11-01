@@ -2401,10 +2401,10 @@ returnValue SQProblemSchur::updateSchurQR( int_t idxDel )
 	long INFO = 0;
 	IWORK = new unsigned long[N];
 	WORK = new real_t[3*N];
-	TRCON( "1", "U", "N", &N, R_, &LDA, &rcondS, WORK, IWORK, &INFO );
+	QPOASES_TRCON( "1", "U", "N", &N, R_, &LDA, &rcondS, WORK, IWORK, &INFO );
 	if ( INFO != 0 )
 	{
-		MyPrintf( "TRCON returns INFO = %d\n",(int)INFO );
+		MyPrintf( "QPOASES_TRCON returns INFO = %d\n",(int)INFO );
 	}
 
 	if ( options.printLevel == PL_HIGH )
@@ -2447,10 +2447,10 @@ returnValue SQProblemSchur::backsolveSchurQR( int_t dimS, const real_t* const rh
 			sol[i] += Q_[j+i*nSmax] * rhs[j];
 
 	/* Solve Rx = sol */
-	TRTRS( "U", "N", "N", &M, &NRHS, R_, &LDA, sol, &LDC, &INFO );
+	QPOASES_TRTRS( "U", "N", "N", &M, &NRHS, R_, &LDA, sol, &LDC, &INFO );
 	if ( INFO != 0 )
 	{
-		MyPrintf("TRTRS returns INFO = %d\n", INFO);
+		MyPrintf("QPOASES_TRTRS returns INFO = %d\n", INFO);
 		if ( INFO == ((long)0xDEADBEEF) )
 			MyPrintf( "If SQProblemSchur is to be used, system LAPACK must be used instead of the qpOASES LAPACK replacement" );
 		return RET_QR_FACTORISATION_FAILED;

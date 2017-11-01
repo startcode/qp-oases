@@ -1415,7 +1415,7 @@ returnValue QProblemB::computeCholesky( )
 				la_int_t info = 0;
 				la_uint_t _nFR = (la_uint_t)nFR, _nV = (la_uint_t)nV;
 
-				POTRF( "U", &_nFR, R, &_nV, &info );
+				QPOASES_POTRF( "U", &_nFR, R, &_nV, &info );
 
 				/* <0 = invalid call, =0 ok, >0 not spd */
 				if (info > 0) {
